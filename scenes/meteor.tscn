@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccb0c8m7uotsl"]
+[gd_scene load_steps=3 format=3 uid="uid://ccb0c8m7uotsl"]
 
-[ext_resource type="Texture2D" uid="uid://qful4ove7mub" path="res://graphics/meteors/meteorGrey_med1.png" id="1_rw15n"]
+[ext_resource type="Script" path="res://scenes/meteor.gd" id="1_vdrt0"]
 
-[node name="Meteor" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdxbe"]
+radius = 20.0
+
+[node name="Meteor" type="Area2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_vdrt0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_rw15n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tdxbe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
