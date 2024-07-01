@@ -10,5 +10,15 @@ script = ExtResource("1_bxtms")
 [node name="PlayerImage" type="Sprite2D" parent="."]
 texture = ExtResource("1_fce0x")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -1)
 polygon = PackedVector2Array(-9, -37, 8, -37, 13, -12, 36, 2, 50, -10, 48, 25, 15, 28, 9, 38, -8, 38, -14, 28, -47, 25, -51, -6, -44, -7, -36, 2, -12, -13)
+
+[node name="LaserPosition" type="Marker2D" parent="."]
+position = Vector2(0, -58)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
