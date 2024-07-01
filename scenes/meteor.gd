@@ -3,6 +3,7 @@ extends Area2D
 var speed: int
 var rotation_speed: int
 var direction_x: float
+var can_collide = true
 
 signal collision
 
@@ -32,6 +33,17 @@ func _process(delta):
 	position += Vector2(direction_x, 1.0) * speed * delta
 	rotation_degrees += rotation_speed * delta
 	
-func _on_body_entered(body):
-	collision.emit()
+func _on_body_entered(_body):
+	if can_collide:
+		collision.emit()
 	
+
+
+func _on_area_entered(area):
+	Global.meteorsDestroyed += 1
+	area.queue_free()
+	$ExplosionSound.play()
+	$Sprite2D.hide() 
+	can_collide = false
+	await get_tree().create_timer(0.25).timeout
+	queue_free()

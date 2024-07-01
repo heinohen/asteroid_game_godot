@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmiifbtkle4c7"]
+[gd_scene load_steps=3 format=3 uid="uid://bmiifbtkle4c7"]
 
 [ext_resource type="FontFile" uid="uid://dvlcf43ym3e86" path="res://fonts/subatomic.tsoonami.ttf" id="1_ua2b3"]
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_wyump"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wyump")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -37,7 +39,7 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="GameOver" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ua2b3")
 theme_override_font_sizes/font_size = 60
@@ -45,11 +47,10 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Score" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ua2b3")
 theme_override_font_sizes/font_size = 30
-text = "Your score: 1337"
 horizontal_alignment = 1
 vertical_alignment = 1
 

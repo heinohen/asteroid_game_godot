@@ -6,7 +6,7 @@
 [node name="UI" type="CanvasLayer" groups=["ui"]]
 script = ExtResource("1_7txhf")
 
-[node name="ScoreContainer" type="MarginContainer" parent="."]
+[node name="ScoreContainer" type="HBoxContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -14,13 +14,21 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 20
+theme_override_constants/separation = 100
+alignment = 1
 
-[node name="Label" type="Label" parent="ScoreContainer"]
+[node name="ScoreLabel" type="Label" parent="ScoreContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_m4eg7")
-theme_override_font_sizes/font_size = 50
-text = "1337
+theme_override_font_sizes/font_size = 30
+text = "
+"
+
+[node name="MeteorLabel" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_m4eg7")
+theme_override_font_sizes/font_size = 30
+text = "
 "
 
 [node name="BottomUi" type="MarginContainer" parent="."]
@@ -35,3 +43,8 @@ theme_override_constants/margin_bottom = 10
 
 [node name="LifeContainer" type="HBoxContainer" parent="BottomUi"]
 layout_mode = 2
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

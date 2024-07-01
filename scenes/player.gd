@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed := 500
-@export var health := 30
+
 var can_shoot: bool = true
 signal laser(pos)
 
@@ -21,8 +21,14 @@ func _process(_delta):
 	if Input.is_action_just_pressed("shoot") and can_shoot:
 		laser.emit($LaserPosition.global_position)
 		can_shoot = false
+		$LaserSound.play()
 		$ShootTimer.start()
+		
+func play_collision_sound():
+	$CollisionSound.play()
 	
+func play_destroyed_sound():
+	$DestroyedSound.play()
 
 func _on_shoot_timer_timeout():
 	can_shoot = true
