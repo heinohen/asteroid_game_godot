@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var direction = Input.get_vector("left","right","up","down")
 	velocity = direction * speed
 	move_and_slide()
@@ -23,16 +23,6 @@ func _process(delta):
 		can_shoot = false
 		$ShootTimer.start()
 	
-func decrease_health():
-	# by hit decrease by 10
-	if health > 10:
-		health -= 10
-	else:
-		health = 0
-		print("dead")
-
-
-
 
 func _on_shoot_timer_timeout():
 	can_shoot = true
