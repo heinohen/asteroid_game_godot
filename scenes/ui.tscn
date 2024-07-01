@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://damhs3jwxyedr"]
 
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_7txhf"]
 [ext_resource type="FontFile" uid="uid://dvlcf43ym3e86" path="res://fonts/subatomic.tsoonami.ttf" id="1_m4eg7"]
-[ext_resource type="Texture2D" uid="uid://cvlwmv8i5dik8" path="res://graphics/ui/playerLife1_blue.png" id="2_beguc"]
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer" groups=["ui"]]
+script = ExtResource("1_7txhf")
 
 [node name="ScoreContainer" type="MarginContainer" parent="."]
 anchors_preset = 5
@@ -34,28 +35,3 @@ theme_override_constants/margin_bottom = 10
 
 [node name="LifeContainer" type="HBoxContainer" parent="BottomUi"]
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("2_beguc")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("2_beguc")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("2_beguc")
-stretch_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("2_beguc")
-stretch_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("2_beguc")
-stretch_mode = 2
