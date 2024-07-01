@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtr70g03i6af8"]
+[gd_scene load_steps=12 format=3 uid="uid://dtr70g03i6af8"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_i10gu"]
 [ext_resource type="Texture2D" uid="uid://8d2yjxd8tr2d" path="res://graphics/bg/black.png" id="1_w71pa"]
@@ -6,8 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfrhk5lfror6s" path="res://graphics/star/star1.png" id="3_cg5xg"]
 [ext_resource type="Texture2D" uid="uid://dyq6d8fmkq7l3" path="res://graphics/star/star2.png" id="4_svj2g"]
 [ext_resource type="Texture2D" uid="uid://h3ur5way57yu" path="res://graphics/star/star3.png" id="5_7hdyn"]
-[ext_resource type="FontFile" uid="uid://dvlcf43ym3e86" path="res://fonts/subatomic.tsoonami.ttf" id="7_4fu40"]
-[ext_resource type="Texture2D" uid="uid://cvlwmv8i5dik8" path="res://graphics/ui/playerLife1_blue.png" id="8_gdokj"]
+[ext_resource type="PackedScene" uid="uid://damhs3jwxyedr" path="res://scenes/ui.tscn" id="7_xwl0v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xam2u"]
 animations = [{
@@ -138,62 +137,7 @@ autostart = true
 
 [node name="Lasers" type="Node2D" parent="."]
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="ScoreContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 20
-
-[node name="Label" type="Label" parent="UI/ScoreContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_4fu40")
-theme_override_font_sizes/font_size = 50
-text = "1337
-"
-
-[node name="BottomUi" type="MarginContainer" parent="UI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 181.0
-grow_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="LifeContainer" type="HBoxContainer" parent="UI/BottomUi"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("8_gdokj")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="UI/BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("8_gdokj")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="UI/BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("8_gdokj")
-stretch_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="UI/BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("8_gdokj")
-stretch_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="UI/BottomUi/LifeContainer"]
-layout_mode = 2
-texture = ExtResource("8_gdokj")
-stretch_mode = 2
+[node name="UI" parent="." instance=ExtResource("7_xwl0v")]
 
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
