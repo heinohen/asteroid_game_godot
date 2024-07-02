@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4h2yiyh6q3ct"]
+[gd_scene load_steps=5 format=3 uid="uid://c4h2yiyh6q3ct"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_bxtms"]
 [ext_resource type="Texture2D" uid="uid://bo7cl7xfw6yux" path="res://graphics/ship/playerShip1_blue.png" id="1_fce0x"]
-[ext_resource type="AudioStream" uid="uid://b6132o8gxybbw" path="res://audio/laser.wav" id="3_r8j8y"]
-[ext_resource type="AudioStream" uid="uid://bqibn8kq2ohur" path="res://audio/collision.wav" id="4_qifgl"]
-[ext_resource type="AudioStream" uid="uid://b5u0jbwojfsbu" path="res://audio/destroyed.wav" id="5_itecv"]
+[ext_resource type="AudioStream" uid="uid://ov81etv8ght2" path="res://audio/sfx_laser1.ogg" id="3_cl3mh"]
+[ext_resource type="AudioStream" uid="uid://byl4tjchv11ye" path="res://audio/sfx_twoTone.ogg" id="4_tig7m"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 22
@@ -25,12 +24,9 @@ wait_time = 0.5
 one_shot = true
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_r8j8y")
+stream = ExtResource("3_cl3mh")
 
 [node name="CollisionSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_qifgl")
-
-[node name="DestroyedSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_itecv")
+stream = ExtResource("4_tig7m")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

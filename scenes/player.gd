@@ -26,9 +26,6 @@ func _process(_delta):
 		
 func play_collision_sound():
 	$CollisionSound.play()
-	
-func play_destroyed_sound():
-	$DestroyedSound.play()
 
 func _on_shoot_timer_timeout():
 	can_shoot = true

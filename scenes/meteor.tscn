@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccb0c8m7uotsl"]
 
 [ext_resource type="Script" path="res://scenes/meteor.gd" id="1_vdrt0"]
-[ext_resource type="AudioStream" uid="uid://dhvmxv4k8mq6a" path="res://audio/meteor_destroyed.wav" id="2_j3o84"]
+[ext_resource type="AudioStream" uid="uid://0mn3nhyi6umr" path="res://audio/sfx_zap.ogg" id="2_2l3jv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdxbe"]
 radius = 20.0
@@ -17,8 +17,7 @@ script = ExtResource("1_vdrt0")
 shape = SubResource("CircleShape2D_tdxbe")
 
 [node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_j3o84")
-volume_db = -24.36
+stream = ExtResource("2_2l3jv")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

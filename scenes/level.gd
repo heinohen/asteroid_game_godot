@@ -50,7 +50,6 @@ func _on_meteor_collision():
 	get_tree().call_group('ui','set_health', playerHealth)
 	$Player.play_collision_sound()
 	if playerHealth <= 0:
-		$Player.play_destroyed_sound()
 		get_tree().change_scene_to_packed(game_over_scene)
 	
 func _on_player_laser(pos):

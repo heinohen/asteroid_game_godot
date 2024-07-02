@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmiifbtkle4c7"]
+[gd_scene load_steps=4 format=3 uid="uid://bmiifbtkle4c7"]
 
 [ext_resource type="FontFile" uid="uid://dvlcf43ym3e86" path="res://fonts/subatomic.tsoonami.ttf" id="1_ua2b3"]
 [ext_resource type="Script" path="res://scenes/game_over.gd" id="1_wyump"]
+[ext_resource type="AudioStream" uid="uid://d28c7dgfdkgku" path="res://audio/sfx_lose.ogg" id="3_53xmy"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -54,16 +55,16 @@ theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BottomContainer" type="MarginContainer" parent="."]
+[node name="BottomContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -136.5
-offset_top = -40.0
-offset_right = 136.5
+offset_left = -182.5
+offset_top = -14.0
+offset_right = 182.5
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -71,3 +72,14 @@ grow_vertical = 0
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ua2b3")
 text = "Press << space bar >> to start again"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="BottomContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ua2b3")
+text = "A game by https://github.com/heinohen/ , credits to sources in README.md"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_53xmy")
