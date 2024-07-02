@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://b5u0jbwojfsbu" path="res://audio/destroyed.wav" id="5_itecv"]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 6
+collision_mask = 22
 script = ExtResource("1_bxtms")
 
 [node name="PlayerImage" type="Sprite2D" parent="."]

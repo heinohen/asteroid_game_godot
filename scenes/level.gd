@@ -4,12 +4,16 @@ extends Node2D
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
 var laser_scene: PackedScene = load("res://scenes/laser.tscn")
 var game_over_scene: PackedScene = load("res://scenes/game_over.tscn")
+var health_scene: PackedScene = load("res://scenes/health.tscn")
 
-var playerHealth: int = 3
+var maxHealth: int = 5
+var playerHealth: int = 5
+
 
 func _ready():
+
 	# Initial health ui for player
-	get_tree().call_group('ui','set_health', playerHealth)
+	get_tree().call_group('ui','set_health', maxHealth)
 	
 	
 	# Stars
@@ -31,19 +35,17 @@ func _ready():
 		star.speed_scale = rng.randf_range(0.1, 1.1)
 
 
+
+
 func _on_meteor_timer_timeout():
-	
 	# 2. create an instance
 	var meteor = meteor_scene.instantiate()
 	# 3. attach node to scene tree
 	$Meteors.add_child(meteor)
-	
 	# connect the signal
-	
-	meteor.connect('collision', on_meteor_collision)
+	meteor.connect('collision', _on_meteor_collision)
 
-
-func on_meteor_collision():
+func _on_meteor_collision():
 	playerHealth -= 1
 	get_tree().call_group('ui','set_health', playerHealth)
 	$Player.play_collision_sound()
@@ -51,9 +53,21 @@ func on_meteor_collision():
 		$Player.play_destroyed_sound()
 		get_tree().change_scene_to_packed(game_over_scene)
 	
-
 func _on_player_laser(pos):
 	var laser = laser_scene.instantiate()
 	$Lasers.add_child(laser)
 	laser.position = pos
 
+
+func _on_health_timer_timeout():
+	# 2. create an instance
+	var health = health_scene.instantiate()
+	# 3. attach node to scene tree
+	$Healths.add_child(health)
+	
+	health.connect('collision', _on_health_collision)
+	
+func _on_health_collision():
+	if playerHealth != maxHealth:
+		playerHealth += 1
+	get_tree().call_group('ui', 'set_health', playerHealth)

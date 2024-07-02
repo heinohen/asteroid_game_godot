@@ -139,5 +139,12 @@ autostart = true
 
 [node name="UI" parent="." instance=ExtResource("7_xwl0v")]
 
+[node name="HealthTimer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="Healths" type="Node2D" parent="."]
+
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
+[connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]

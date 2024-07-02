@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1rpoe022kxuu"]
+
+[ext_resource type="Texture2D" uid="uid://djb86thunm6gv" path="res://graphics/power-ups/pill_red.png" id="1_cynsd"]
+[ext_resource type="AudioStream" uid="uid://delx6m152gac4" path="res://audio/sfx_shieldUp.ogg" id="2_b2381"]
+
+[sub_resource type="GDScript" id="GDScript_81lu4"]
+script/source = "extends Area2D
+
+
+var rotation_speed: int
+signal collision
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var rng = RandomNumberGenerator.new()
+	var size = get_viewport().get_visible_rect().size
+	var random_x = rng.randi_range(0, size[0])
+	var random_y = rng.randi_range(0,size[1])
+	
+	position = Vector2(random_x, random_y)
+	$Sprite2D.scale = Vector2(2,2)
+	
+	rotation_speed = rng.randi_range(-40, -100)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	rotation_degrees += rotation_speed * delta
+
+
+
+func _on_body_entered(body):
+	print(body)
+	$PickupSound.play()
+	collision.emit()
+	$Sprite2D.hide() 
+	await get_tree().create_timer(0.2).timeout
+	queue_free()
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ads7m"]
+radius = 7.06925
+height = 26.0
+
+[node name="Health" type="Area2D"]
+collision_layer = 16
+script = SubResource("GDScript_81lu4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cynsd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.808087
+shape = SubResource("CapsuleShape2D_ads7m")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_b2381")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
